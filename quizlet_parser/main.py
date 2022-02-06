@@ -19,3 +19,6 @@ class Flashcards:
 
     def __getitem__(self, item: str) -> str:
         return self.flashcards[item]
+
+    def __len__(self):
+        return len(self.flashcards)
