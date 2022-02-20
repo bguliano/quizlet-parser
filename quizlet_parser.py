@@ -7,10 +7,16 @@ class Flashcards:
     def __init__(self, url: str):
         session = HTMLSession()
         soup = BeautifulSoup(session.get(url).content, features='html.parser')
-        self.title = soup.find('h1', {'class': 'UIHeading UIHeading--one'}).text
-        self.author = soup.find('span', {'class': 'UserLink-username'}).text
+
+        title = soup.find('h1', {'class': 'UIHeading UIHeading--one'})
+        self.title = title.text if title is not None else title
+
+        author = soup.find('span', {'class': 'UserLink-username'})
+        self.author = author.text if author is not None else author
+
         description = soup.find('div', {'class': 'SetPageHeader-description'})
         self.description = description.text if description is not None else description
+
         results = soup.findAll('span', {'class': re.compile('TermText notranslate')})
         self.flashcards = {}
         for i, result in enumerate(results):
