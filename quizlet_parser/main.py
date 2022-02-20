@@ -11,11 +11,22 @@ class Flashcards:
         self.author = soup.find('span', {'class': 'UserLink-username'}).text
         description = soup.find('div', {'class': 'SetPageHeader-description'})
         self.description = description.text if description is not None else description
-        card_data = soup.findAll('span', {'class': re.compile('TermText notranslate')})
+        results = soup.findAll('span', {'class': re.compile('TermText notranslate')})
         self.flashcards = {}
-        for i, result in enumerate(card_data):
+        for i, result in enumerate(results):
             if i % 2 == 0:
-                self.flashcards[result.text] = card_data[i + 1].text
+                self.flashcards[self.parse_tag_text(result)] = self.parse_tag_text(results[i + 1])
+
+    @staticmethod
+    def parse_tag_text(tag) -> str:
+        result = ''
+        print(tag.contents)
+        for item in tag.contents:
+            if isinstance(item, str):
+                result += item
+            elif len(result) and result[-1] != '\n':
+                result += '\n'
+        return result
 
     def __getitem__(self, item: str) -> str:
         return self.flashcards[item]
