@@ -20,7 +20,6 @@ class Flashcards:
     @staticmethod
     def parse_tag_text(tag) -> str:
         result = ''
-        print(tag.contents)
         for item in tag.contents:
             if isinstance(item, str):
                 result += item
