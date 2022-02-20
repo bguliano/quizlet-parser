@@ -29,7 +29,7 @@ This code takes a search term and searches google for 5 Quizlet pages that best 
 ```
 from difflib import SequenceMatcher
 from googlesearch import search
-from quizlet_parser.main import Flashcards
+from quizlet_parser import Flashcards
 
 
 def similarity(a: str, b: str) -> float:
