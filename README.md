@@ -2,10 +2,6 @@
 
 A simple python script to extract useful information from a Quizlet link.
 
-### To run:
-1. ```pip install -r requirements.txt```
-2. Execute [```main.py```](quizlet_parser/main.py)
-
 ### Requirements:
 - [```beautifulsoup4```](https://pypi.org/project/beautifulsoup4/)
 - [```requests-html```](https://pypi.org/project/requests-html/)
