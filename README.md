@@ -12,7 +12,7 @@ A simple python script to extract useful information from a Quizlet link.
 
 ### Usage:
 ```>>> from quizlet_parser import Flashcards
->>> cards = Flashcards("https://quizlet.com/143490264/programming-python-flash-cards/")
+>>> cards = Flashcards("https://quizlet.com/667086814/python-builtins-flash-cards/")
 >>> cards.author
 'bguliano'
 >>> cards.title
