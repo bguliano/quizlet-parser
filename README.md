@@ -9,18 +9,18 @@ A simple python script to extract useful information from a Quizlet link.
 ### Usage:
 ```
 >>> from quizlet_parser import Flashcards
->>> cards = Flashcards("https://quizlet.com/667086814/python-builtins-flash-cards/")
->>> cards.author
+>>> flashcards = Flashcards("https://quizlet.com/667086814/python-builtins-flash-cards/")
+>>> flashcards.author
 'bguliano'
->>> cards.title
+>>> flashcards.title
 'Python builtins'
->>> cards.description
+>>> flashcards.description
 'Sample description'
->>> len(cards)
+>>> len(flashcards)
 5
->>> cards.flashcards
+>>> flashcards
 {'abs()': 'Returns the absolute value of a number', 'bool()': 'Converts a value to a boolean', 'dir()': 'Returns a list of attributes for an object', 'len()': 'Returns the length of a object', 'type()': 'Return the type of an object'}
->>> cards['bool()']
+>>> flashcards['bool()']
 'Converts a value to a boolean'
 ```
 
@@ -43,8 +43,8 @@ if __name__ == '__main__':
     matches = {}
 
     for url in urls:
-        cards = Flashcards(url)
-        for term, definition in cards.flashcards.items():
+        flashcards = Flashcards(url)
+        for term, definition in flashcards.items():
             if similarity(term, search_term) >= 0.5:
                 matches[term] = definition
 
