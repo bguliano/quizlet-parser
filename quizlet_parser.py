@@ -6,6 +6,7 @@ from requests_html import HTMLSession
 class Flashcards(dict):
     def __init__(self, url: str):
         super(Flashcards, self).__init__()
+
         session = HTMLSession()
         soup = BeautifulSoup(session.get(url).content, features='html.parser')
 
