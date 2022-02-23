@@ -3,8 +3,9 @@ from bs4 import BeautifulSoup
 from requests_html import HTMLSession
 
 
-class Flashcards:
+class Flashcards(dict):
     def __init__(self, url: str):
+        super(Flashcards, self).__init__()
         session = HTMLSession()
         soup = BeautifulSoup(session.get(url).content, features='html.parser')
 
@@ -18,13 +19,12 @@ class Flashcards:
         self.description = description.text if description is not None else description
 
         results = soup.findAll('span', {'class': re.compile('TermText notranslate')})
-        self.flashcards = {}
         for i, result in enumerate(results):
             if i % 2 == 0:
-                self.flashcards[self.parse_tag_text(result)] = self.parse_tag_text(results[i + 1])
+                self[self._parse_tag_text(result)] = self._parse_tag_text(results[i + 1])
 
     @staticmethod
-    def parse_tag_text(tag) -> str:
+    def _parse_tag_text(tag) -> str:
         result = ''
         for item in tag.contents:
             if isinstance(item, str):
@@ -32,9 +32,3 @@ class Flashcards:
             elif len(result) and result[-1] != '\n':
                 result += '\n'
         return result
-
-    def __getitem__(self, item: str) -> str:
-        return self.flashcards[item]
-
-    def __len__(self):
-        return len(self.flashcards)
