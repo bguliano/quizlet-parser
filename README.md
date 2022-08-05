@@ -7,7 +7,7 @@ A simple python script to extract useful information from a Quizlet link.
 - [```requests-html```](https://pypi.org/project/requests-html/)
 
 ### Usage:
-```
+```python
 >>> from quizlet_parser import Flashcards
 >>> flashcards = Flashcards("https://quizlet.com/667086814/python-builtins-flash-cards/")
 >>> flashcards.author
@@ -26,7 +26,7 @@ A simple python script to extract useful information from a Quizlet link.
 
 ### Example:
 This code takes a search term and searches google for 5 Quizlet pages that best match the search term. Then, it prints out term-definition pairs that best match the original search term. Requires the [```googlesearch-python```](https://pypi.org/project/googlesearch-python/) PyPI package.
-```
+```python
 from difflib import SequenceMatcher
 from googlesearch import search
 from quizlet_parser import Flashcards
